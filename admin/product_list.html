@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Product List</title>
+    <link rel="stylesheet" href="/admin/admin.css"> <!-- Update with your CSS path -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel - Product List</h1>
+        <!-- Add your navigation here -->
+        <div class="nav-buttons">
+            <button onclick="navigateToUsers()">Users</button>
+            <button onclick="navigateToProducts()">Add Products</button>
+            <button onclick="navigateToProdList()">Product List</button>
+            <button onclick="navigateToHome()">Home</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-management">
+            <table id="productsTable">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Product rows will be populated dynamically here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Kristiāns Golubevs CSA4D1, 2023</p>
+    </footer>
+
+    <script src="/admin/admin.js"></script> <!-- Update with your JS path -->
+</body>
+</html>

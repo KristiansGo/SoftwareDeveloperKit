@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/admin/list.css">
+    <title>Edit Product</title>
+</head>
+<body>
+    <form id="productForm" action="/api/products/update" method="POST" enctype="multipart/form-data">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" value="<%= productData.product_name %>" required><br>
+
+        <label for="productDescription">Description:</label>
+        <textarea id="productDescription" name="productDescription"><%= productData.product_description %></textarea><br>
+
+        <label for="productPrice">Price:</label>
+        <input type="number" id="productPrice" name="productPrice" value="<%= productData.product_price %>" required><br>
+
+        <label for="productQuantity">Quantity:</label>
+        <input type="number" id="productQuantity" name="productQuantity" value="<%= productData.product_quantity %>" required><br>
+
+        <label for="productImage">Product Image (optional):</label>
+        <% if (productData.product_image) { %>
+            <img src="data:image/*;base64,<%= productData.product_image.toString('base64') %>" alt="Product Image" style="max-width: 200px; max-height: 200px;"><br>
+        <% } %>
+        <input type="file" id="productImage" name="productImage"><br>
+        <p>If you don't select a new image, the current one will remain unchanged.</p>
+
+        <h2>Product Specifications</h2>
+
+        <label for="processorFamily">Processor Family:</label>
+        <input type="text" id="processorFamily" name="processorFamily" value="<%= specificationData.processor_family %>" required><br>
+
+        <label for="processorModel">Processor Model:</label>
+        <input type="text" id="processorModel" name="processorModel" value="<%= specificationData.processor_model %>" required><br>
+
+        <label for="processorFrequency">Processor Frequency:</label>
+        <input type="text" id="processorFrequency" name="processorFrequency" value="<%= specificationData.processor_frequency %>" required><br>
+
+        <label for="processorCores">Processor Cores:</label>
+        <input type="number" id="processorCores" name="processorCores" value="<%= specificationData.processor_cores %>" required><br>
+
+        <label for="hddSize">HDD Size (GB):</label>
+        <input type="number" id="hddSize" name="hddSize" value="<%= specificationData.hdd_size %>"><br>
+
+        <label for="ram">RAM (GB):</label>
+        <input type="number" id="ram" name="ram" value="<%= specificationData.ram %>" required><br>
+
+        <label for="videoCardType">Video Card Type:</label>
+        <input type="text" id="videoCardType" name="videoCardType" value="<%= specificationData.video_card_type %>" required><br>
+
+        <label for="videoCard">Video Card:</label>
+        <input type="text" id="videoCard" name="videoCard" value="<%= specificationData.video_card %>" required><br>
+
+        <label for="videoCardMemory">Video Card Memory (GB):</label>
+        <input type="number" id="videoCardMemory" name="videoCardMemory" value="<%= specificationData.video_card_memory %>" required><br>
+
+        <label for="ssdSize">SSD Size (GB):</label>
+        <input type="number" id="ssdSize" name="ssdSize" value="<%= specificationData.ssd_size %>"><br>
+
+        <button type="button" id="saveChangesButton">Save Changes</button>
+
+    </form>
+    
+    <script src="/admin/admin.js"></script>
+</body>
+</html>

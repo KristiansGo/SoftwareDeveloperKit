@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Products</title>
+<link rel="stylesheet" href="/admin/admin.css"> <!-- Update with your CSS path -->
+<link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel - Product Management</h1>
+        <!-- Add your navigation here -->
+        <div class="nav-buttons">
+            <button onclick="navigateToUsers()">Users</button>
+            <button onclick="navigateToProducts()">Add Products</button>
+            <button onclick="navigateToProdList()">Product List</button>
+            <button onclick="navigateToHome()">Home</button>
+        </div>
+    </header>
+    <h2>Add New Product</h2>
+
+    <!-- Form for Product Details -->
+<form id="productForm" action="/api/products" method="POST" enctype="multipart/form-data">
+    <!-- Image Upload -->
+    <label for="productImage">Product Image:</label>
+    <input type="file" id="productImage" name="productImage" accept="image/*" required><br>
+
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="productName" required><br>
+
+    <label for="productDescription">Description:</label>
+    <textarea id="productDescription" name="productDescription"></textarea><br>
+
+    <label for="productPrice">Price:</label>
+    <input type="number" id="productPrice" name="productPrice" required><br>
+
+    <label for="productQuantity">Quantity:</label>
+    <input type="number" id="productQuantity" name="productQuantity" required><br>
+
+    <!-- Form for Product Specifications -->
+    <h2>Product Specifications</h2>
+
+    <label for="processorFamily">Processor Family:</label>
+    <input type="text" id="processorFamily" name="processorFamily" required><br>
+
+    <label for="processorModel">Processor Model:</label>
+    <input type="text" id="processorModel" name="processorModel" required><br>
+
+    <label for="processorFrequency">Processor Frequency:</label>
+    <input type="text" id="processorFrequency" name="processorFrequency" required><br>
+
+    <label for="processorCores">Processor Cores:</label>
+    <input type="number" id="processorCores" name="processorCores" required><br>
+
+    <label for="hddSize">HDD Size (GB):</label>
+    <input type="number" id="hddSize" name="hddSize"><br>
+
+    <label for="ram">RAM (GB):</label>
+    <input type="number" id="ram" name="ram" required><br>
+
+    <label for="videoCardType">Video Card Type:</label>
+    <input type="text" id="videoCardType" name="videoCardType" required><br>
+
+    <label for="videoCard">Video Card:</label>
+    <input type="text" id="videoCard" name="videoCard" required><br>
+
+    <label for="videoCardMemory">Video Card Memory (GB):</label>
+    <input type="number" id="videoCardMemory" name="videoCardMemory" required><br>
+
+    <label for="ssdSize">SSD Size (GB):</label>
+    <input type="number" id="ssdSize" name="ssdSize"><br>
+
+    <input type="submit" value="Add Product">
+</form>
+
+<footer>
+    <p>&copy; Kristiāns Golubevs CSA4D1, 2023</p>
+</footer>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

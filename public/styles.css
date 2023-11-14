@@ -1,0 +1,501 @@
+
+
+body, h2, label {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Set a gradient background for the entire body */
+body {
+    display: flex; /* make the body a flex container */
+    flex-direction: column; /* align children in a column */
+    min-height: 100vh; /* full viewport height */
+    margin: 0;
+    padding: 0;
+    background: #007BFF; /* Fallback color */
+    background: linear-gradient(to bottom, #007BFF, #0056b3); /* Gradient background */
+    color: #333; /* Dark grey text */
+    font-family: Arial, sans-serif;
+}
+
+main {
+    flex-grow: 1; /* take up all available space */
+}
+
+
+header {
+    background-color: #007BFF;
+    color: #ffffff;
+    padding: 0.2rem 0; /* Reduce the top and bottom padding */
+    text-align: center;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #007BFF;
+    color: #ffffff;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-left: 20px; /* Add margin between the list items */
+}
+
+.nav-list .login-link a {
+    padding: 0.5rem 1rem;
+    background: #343a40;
+    border-radius: 0.25rem;
+}
+
+.nav-list .login-link a:hover {
+    background: #495057;
+}
+
+
+.nav-button {
+    padding: 10px 20px;
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid transparent; /* Transparent border */
+    border-radius: 4px;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.nav-button:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Responsive design: Adjusts the padding on smaller screens */
+@media (max-width: 768px) {
+    header, main, footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Update the product list to display as rows and columns */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style for each product item (column) */
+.product {
+    flex: 0 0 calc(25% - 20px); /* Each product takes 25% width for a 4-column layout */
+    max-width: calc(23% - 20px); /* Adjust the width and add margin between columns */
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+
+/* Media query to change to a 2-column layout on smaller screens */
+@media (max-width: 768px) {
+    .product {
+        flex: 0 0 calc(50% - 20px); /* Each product takes 50% width for a 2-column layout on smaller screens */
+        max-width: calc(50% - 20px); /* Adjust the width and add margin between columns */
+    }
+}
+
+.product-image {
+    max-width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+}
+
+.product-name {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+.btn-add-cart {
+    padding: 0.5rem 1rem;
+    background-color: transparent; /* Transparent background */
+    color: #ffffff;
+    border: 1px solid #ffffff; /* White border */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add-cart:hover {
+    background-color: #ffffff; /* Change background color on hover */
+    color: #007BFF; /* Change text color on hover */
+}
+
+/* Lightbox CSS */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: auto; /* Being responsive to the width */
+    max-height: 80%; /* Adjusted to 80% of the viewport height */
+    max-width: 80%; /* Max width adjusted */
+}
+
+.caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #46515c; /* Bootstrap dark */
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    /* Removed the position: absolute; to allow it to naturally be at the bottom */
+    width: 100%;
+}
+
+.product .btn-add-cart {
+    padding: 0.5rem 1rem;
+    background-color: #28a745; /* Green background */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product .btn-add-cart:hover {
+    background-color: #28a745; /* Keep green background on hover */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Adjust the minimum height */
+    /* Removed the background as it's already set on the body */
+    /* Removed positioning properties */
+    /* Removed width and height as they're not necessary */
+    padding: 1rem; /* Add some padding */
+}
+
+/* Form styling for login page */
+.form-login {
+    width: 100%;
+    max-width: 330px;
+    padding: 30px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Box shadow for the form */
+}
+
+.form-login .form-login-heading {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333; /* Dark text color */
+}
+
+.form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px; /* Increased margin between input fields */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #007BFF; /* Highlight input field when focused */
+}
+
+.btn-container {
+    display: flex; /* Display buttons in a row */
+    align-items: center; /* Center buttons vertically */
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #007BFF; /* Primary button color */
+    color: #ffffff; /* White text */
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Hover background color */
+    color: #ffffff; /* Hover text color */
+    transform: scale(1.05);
+}
+
+
+/* Responsive design: Adjusts the padding on smaller screens */
+@media (max-width: 768px) {
+    header, main, footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+footer {
+    background-color: #46515c; /* Bootstrap dark */
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    /* Change position to relative, absolute positioning is not needed */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.signup-link {
+    color: #007BFF; /* Set the color for the link */
+    text-decoration: underline; /* Add an underline to indicate it's a link */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+
+
+
+/* Additional styles for registration form */
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+  width: 150px; /* Fixed width for labels */
+  text-align: right; /* Align the text to the right for consistency */
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  flex: 1; /* Allow input to fill the space */
+  min-width: 0; /* Override flex item's min-width default of auto */
+}
+
+.form-inline .form-group {
+  flex-grow: 1;
+  display: flex;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+  width: 100%; /* Make the button extend full width of the form-group */
+}
+
+.form-inline button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-inline label,
+  .form-inline input {
+    flex: 100%;
+    margin: 5px 0;
+    width: auto; /* Allow labels and inputs to fill the available space */
+    text-align: left; /* Align text to the left on smaller screens */
+  }
+
+  .form-inline .form-group {
+    flex-direction: column;
+  }
+}
+
+/* admin modal */
+
+/* admin-modal.css */
+
+/* Styles for the modal background overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Styles for the modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Styles for the close button in the modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add any additional styles for the modal content and form elements as needed */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .cart-item-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  /* Style the total sum element */
+/* Style the total sum element */
+.total-sum {
+    position: fixed;
+    bottom: 100px; /* Adjust the distance from the bottom as needed */
+    right: 120px; /* Adjust the distance from the right as needed */
+    background-color: #ec9797; /* Background color for both elements */
+    padding: 10px 20px; /* Add padding for better visibility (adjust as needed) */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a shadow for a raised look */
+    z-index: 9999; /* Ensure both elements are above other elements */
+}
+
+.checkout-button {
+    position: fixed;
+    bottom: 100px; /* Adjust the distance from the bottom as needed */
+    right: 20px; /* Adjust the distance from the right as needed */
+    background-color: #ec9797; /* Background color for both elements */
+    padding: 10px 20px; /* Add padding for better visibility (adjust as needed) */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a shadow for a raised look */
+    z-index: 9999; /* Ensure both elements are above other elements */
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure to link to your CSS file -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Registration</h1>
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-list">
+                    <li><a class="nav-button" href="/products">Products</a></li>
+                    <li><a class="nav-button" href="/cart">Cart</a></li>
+                    <li><a class="nav-button" href="/login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="login-container">
+          <form class="form-login" id="registration-form" action="/registration" method="post">
+                <h2 class="form-login-heading">Registration</h2>
+                
+                <div class="form-inline">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+                </div>
+            
+                <div class="form-inline">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
+                </div>
+            
+                <div class="form-inline">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+                </div>
+            
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Register</button>
+                    <p class="text-muted mt-3">Already have an account? <a href="/login" class="signup-link">Click Here!</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>Kristiāns Golubevs CSA4D1, 2023</p>
+    </footer>
+    <!-- Add your footer here if needed -->
+
+<script src="script.js"></script>
+</body>
+</html>

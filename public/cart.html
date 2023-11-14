@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <title>Shopping Cart - My Shop</title>
+  
+  <!-- Include Stripe.js library -->
+</head>
+<body>
+  <header>
+    <h1>Shopping Cart</h1>
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-list">
+          <li><a class="nav-button" href="/products">Products</a></li>
+          <li>
+            <a class="nav-button" href="/cart">
+              Cart
+              <span id="cart-icon" class="cart-icon">0</span>
+            </a>
+          </li>
+          <li><a class="nav-button" href="/login">Login</a></li>
+          <li><a class="nav-button" id="logout-button" href="#" style="display: none;">Logout</a></li>
+          <li><a class="nav-button" id="admin-button" href="/admin/users" style="display: none;">Admin Panel</a></li>
+          <li><span id="user-welcome"></span></li>
+        </ul>
+      </div>
+      
+      <!-- Add this HTML element where you want to display the total sum -->
+      <div id="total-sum" class="total-sum"></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="cart-list" id="cart-list">
+      <!-- Dynamic shopping cart entries will be loaded here by JavaScript -->
+    </section>
+  </main>
+  <button id="checkout-button" class="checkout-button">Checkout</button>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="full-image">
+    <div id="caption" class="caption"></div>
+  </div>
+
+  <footer>
+    <p>Kristiāns Golubevs CSA4D1, 2023</p>
+  </footer>
+  
+  <script src="script.js"></script>
+  <script src="loginState.js"></script>
+</body>
+</html>

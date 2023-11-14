@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Users</title>
+<link rel="stylesheet" href="/admin/admin.css"> <!-- Update with your CSS path -->
+<link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<header>
+    <h1>Admin Panel - User Management</h1>
+    <!-- Add your navigation here -->
+    <div class="nav-buttons">
+        <button onclick="navigateToUsers()">Users</button>
+        <button onclick="navigateToProducts()">Add Products</button>
+        <button onclick="navigateToProdList()">Product List</button>
+        <button onclick="navigateToHome()">Home</button>
+        
+    </div>
+</header>
+
+<main>
+    <section class="user-management">
+        <h2>Add New User</h2>
+        <form id="addUserForm">
+            <input type="text" id="addUsername" placeholder="Username" required>
+            <input type="email" id="addEmail" placeholder="Email" required>
+            <input type="password" id="addPassword" placeholder="Password" required>
+            <button type="submit">Add User</button>
+        </form>
+
+        <!-- Edit User Section Title (Initially Hidden) -->
+        <h2 id="editUserTitle" style="display: none;">Edit User</h2>
+
+        <form id="editUserForm" style="display: none;">
+            <input type="hidden" id="editUserId">
+            <input type="text" id="editUsername" placeholder="Username" required>
+            <input type="email" id="editEmail" placeholder="Email" required>
+            <input type="password" id="editPassword" placeholder="Password">
+            <button type="submit">Update User</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+
+        <h2>User List</h2>
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- User rows will be populated dynamically here -->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Kristiāns Golubevs CSA4D1, 2023</p>
+</footer>
+
+<script src="/admin/admin.js"></script>
+ <!-- Update with your JS path -->
+
+</body>
+</html>
