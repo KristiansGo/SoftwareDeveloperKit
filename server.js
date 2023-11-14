@@ -36,15 +36,11 @@ app.use(session({
   cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-
-
 // Define middleware to set the common cookie
 app.use((req, res, next) => {
   res.cookie('commonCookie', 'commonValue', { path: '/', httpOnly: true });
   next();
 });
-
-
 
 app.set('view engine', 'ejs');
 
@@ -108,8 +104,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-
 // Endpoint for adding a product to the cart
 app.post('/api/cart/add', async (req, res) => {
   try {
@@ -151,7 +145,6 @@ app.post('/api/cart/add', async (req, res) => {
   }
 });
 
-
 // Root route for the homepage
 
 app.get('/', (req, res) => {
@@ -184,7 +177,6 @@ app.get('/api/product_list', async (req, res) => {
   }
 });
 
-
 // Protect the main admin route with authentication middleware
 app.get('/admin/', (req, res) => {
   if (userIsAuthenticatedAndAuthorized(req)) {
@@ -213,7 +205,6 @@ app.post('/admin/adduser', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
 
 app.get('/images/:productId', async (req, res) => {
   try {
@@ -269,11 +260,7 @@ app.delete('/api/cart/:username/delete/:productId', async (req, res) => {
   }
 });
 
-
-//////////////////////
-
-
-// 1. Retrieve product information from the 'products' table
+//  Retrieve product information from the 'products' table
 app.get('/edit-product', async (req, res) => {
   try {
     const productId = req.query.id; // Retrieve the product ID from the query parameter
@@ -295,8 +282,6 @@ app.get('/edit-product', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-
 
 app.post('/api/products', upload.single('productImage'), async (req, res) => {
   const { productName, productDescription, productPrice, productQuantity, processorFamily, processorModel, processorFrequency, processorCores, hddSize, ram, videoCardType, videoCard, videoCardMemory, ssdSize } = req.body;
@@ -324,8 +309,6 @@ app.post('/api/products', upload.single('productImage'), async (req, res) => {
 });
 
 
-////
-
 app.get('/api/cart-item-count/:username', async (req, res) => {
   try {
     const { username } = req.params;
@@ -350,11 +333,6 @@ app.get('/api/cart-item-count/:username', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
-
-
-////
-
 
 
 app.get('/api/cart/:username', async (req, res) => {
@@ -403,10 +381,6 @@ app.get('/api/products/:productId', async (req, res) => {
   }
 });
 
-
-
-
-
 function isAdmin(req, res, next) {
   console.log('Current user:', req.session.username)
   if (req.session.username === 'admin') {
@@ -428,10 +402,6 @@ app.get('/admin/products', isAdmin, async (req, res) => {
   res.sendFile(path.join(__dirname, '/admin/product_list.html'));
 });
 
-
-
-
-
 app.get('/api/users', async (req, res) => {
   try {
     // Execute the SQL query to fetch users from the database
@@ -445,7 +415,6 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-
 app.get('/admin/products', (req, res) => {
   const filePath = path.join(__dirname, 'admin', 'products.html');
   fs.access(filePath, fs.constants.F_OK, (err) => {
@@ -457,8 +426,6 @@ app.get('/admin/products', (req, res) => {
     }
   });
 }); 
-
-
 
 app.delete('/api/users/:userId', async (req, res) => {
   const userId = req.params.userId;
@@ -482,8 +449,6 @@ app.delete('/api/users/:userId', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
-// server.js
 
 // Define a route for deleting a product and its related specifications
 app.delete('/api/products/:productId', async (req, res) => {
@@ -511,7 +476,6 @@ app.delete('/api/products/:productId', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 
 app.put('/api/users/:userId', async (req, res) => {
   const userId = req.params.userId;

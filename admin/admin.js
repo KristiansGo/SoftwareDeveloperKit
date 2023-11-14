@@ -6,7 +6,6 @@ if (addUserForm) {
     });
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
     var editUserForm = document.getElementById('editUserForm');
     if (editUserForm) {
@@ -27,8 +26,6 @@ function deleteUser(userId) {
 function cancelEdit() {
     document.getElementById('editUserForm').style.display = 'none';
 }
-
-  
 
 function loadProducts() {
     console.log('Loading products...'); // Add this line
@@ -90,7 +87,6 @@ function loadProducts() {
             console.error('Error fetching products:', error);
         });
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();;
@@ -523,7 +519,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("addPassword").value = '';
   }
 
-  
 
 // Function to edit a product
 function editProduct(productId) {

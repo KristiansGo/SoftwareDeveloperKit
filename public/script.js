@@ -249,13 +249,7 @@ async function loadShoppingCart() {
     // Handle the case where there is no username
   }
 }
-
-
-
 document.addEventListener('DOMContentLoaded', loadShoppingCart);
-
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
   const registrationForm = document.getElementById("registration-form");
@@ -344,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 // Consolidate DOMContentLoaded listener
 document.addEventListener('DOMContentLoaded', function () {
   loadProducts(); // Load products
@@ -367,7 +360,6 @@ function loadProducts() {
 }
 
 
-  
   // Load products when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadProducts);
   
@@ -404,7 +396,6 @@ document.addEventListener('DOMContentLoaded', loadProducts);
     modal.style.display = "none";
   }
   
-
 
 // Function to fetch and update the cart item count
 async function updateCartItemCount() {

@@ -2,6 +2,10 @@
 
 ### Introduction
 
+# Important Info
+
+.env file is not included in .gitignore to be able to see every file that was used in this project.
+
 # Project Overview:
 
 Internet Store for Software Developer Kit is a Node.js web application designed for empowering businesses to sell products online efficiently, it offers a robust set of tools and components for creating a customizable and scalable online store. Built with simplicity and efficiency in mind, it leverages the Express framework to handle web requests and provide various functionalities.
