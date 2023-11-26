@@ -12,11 +12,13 @@ Internet Store for Software Developer Kit is a Node.js web application designed 
 
 # Technologies Used:
 
+Visual Studio Code V1.84.2
+PostgreSQL: An advanced, open-source relational database, as well as - pgAdmin 4 v7.8
 HTML, CSS, and JavaScript: Used for creating the user interface and client-side scripting.
-Node.js: A JavaScript runtime for building fast and scalable server-side applications.
+Node.js v21.2.0: A JavaScript runtime for building fast and scalable server-side applications.
 EJS: Used for server-side HTML templating.
 Express: A minimal Node.js web application framework, facilitating the creation of API endpoints.
-PostgreSQL: An advanced, open-source relational database.
+
 
 # Prerequisites:
 
@@ -27,55 +29,100 @@ PostgreSQL database.
 
 Clone the project repository: git clone [https://github.com/KristiansGo/SoftwareDeveloperKit].
 Navigate to the project directory.
-Install Node.js dependencies: npm install.
-Set up the PostgreSQL database.
+Install Node.js - https://nodejs.org/en , choose current version v21.2.0
+Install dependencies through your command prompt.
+1. npm install dotenv (For loading environment variables from a .env file)
+2. npm install express (The core framework for handling HTTP requests and responses)
+3. npm install pg (The PostgreSQL client for Node.js, used to interact with your PostgreSQL database)
+4. npm install multer (Used for uploading files)
+5. npm install bcryptjs (A library for hashing and comparing passwords securely)
+6. npm install express-session (Middleware for handling sessions in Express)
+7. npm install ejs (A templating engine to render HTML from templates)
+For easier installing use command - npm install dotenv express pg multer bcryptjs express-session ejs
+Download postgreSQL - https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+Set up the PostgreSQL database(In my case called - Shop). Database Schema with script for creating tables provided in section - Database Schema
+Please remember your password you created in database installation, you will need to use it later.
 
 ### Architecture Overview
 
 # Database Schema
 
+# Create sequences
+
+CREATE SEQUENCE products_product_id_seq;
+CREATE SEQUENCE shopping_cart_cart_id_seq;
+CREATE SEQUENCE specifications_specification_id_seq;
+CREATE SEQUENCE users_user_id_seq;
+
 # Products Table - Purpose: Stores information about products.
-Fields:
-product_id: INTEGER - Primary key, auto-increment.
-product_name: VARCHAR(255) - Name of the product.
-product_description: TEXT - Description of the product.
-product_price: NUMERIC(10, 2) - Price of the product.
-product_quantity: INTEGER - Available quantity.
-created_at: TIMESTAMP - Date/time of product addition.
-product_image: BYTEA - Image of the product.
-
-# Shopping Cart Table - Purpose: Manages shopping cart contents.
-Fields:
-cart_id: INTEGER - Primary key, auto-increment.
-user_id: INTEGER - User's ID (Foreign key from Users table).
-product_id: INTEGER - Product's ID (Foreign key from Products table).
-quantity: INTEGER - Quantity of product.
-created_at: TIMESTAMP - Date/time of cart entry creation.
-updated_at: TIMESTAMP - Date/time of last update.
-
-# Specifications Table - Purpose: Holds product specifications.
-Fields:
-specification_id: INTEGER - Primary key, auto-increment.
-product_id: INTEGER - Product's ID.
-processor_family: VARCHAR(255) - Processor family.
-processor_model: VARCHAR(255) - Processor model.
-processor_frequency: VARCHAR(255) - Processor frequency.
-processor_cores: INTEGER - Number of processor cores.
-hdd_size: VARCHAR(255) - HDD size.
-ram: VARCHAR(255) - RAM amount.
-video_card_type: VARCHAR(255) - Video card type.
-video_card: VARCHAR(255) - Video card model.
-video_card_memory: VARCHAR(255) - Video card memory.
-ssd_size: VARCHAR(255) - SSD size.
+CREATE TABLE IF NOT EXISTS public.products
+(
+    product_id integer NOT NULL DEFAULT nextval('products_product_id_seq'::regclass),
+    product_name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    product_description text COLLATE pg_catalog."default",
+    product_price numeric(10,2),
+    product_quantity integer,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    product_image bytea,
+    CONSTRAINT products_pkey PRIMARY KEY (product_id)
+)
 
 # Users Table - Purpose: Manages user information.
-Fields:
-user_id: INTEGER - Primary key, auto-increment.
-username: VARCHAR(50) - Username, unique.
-password: VARCHAR(255) - Password.
-email: VARCHAR(100) - Email address.
+CREATE TABLE IF NOT EXISTS public.users
+(
+    user_id integer NOT NULL DEFAULT nextval('users_user_id_seq'::regclass),
+    username character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT users_pkey PRIMARY KEY (user_id),
+    CONSTRAINT users_username_key UNIQUE (username)
+)
 
-Start the server: node index.js or use a script if defined in package.json.
+# Specifications Table - Purpose: Holds product specifications.
+CREATE TABLE IF NOT EXISTS public.specifications
+(
+    specification_id integer NOT NULL DEFAULT nextval('specifications_specification_id_seq'::regclass),
+    product_id integer NOT NULL,
+    processor_family character varying(255) COLLATE pg_catalog."default",
+    processor_model character varying(255) COLLATE pg_catalog."default",
+    processor_frequency character varying(255) COLLATE pg_catalog."default",
+    processor_cores integer,
+    hdd_size character varying(255) COLLATE pg_catalog."default",
+    ram character varying(255) COLLATE pg_catalog."default",
+    video_card_type character varying(255) COLLATE pg_catalog."default",
+    video_card character varying(255) COLLATE pg_catalog."default",
+    video_card_memory character varying(255) COLLATE pg_catalog."default",
+    ssd_size character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT specifications_pkey PRIMARY KEY (specification_id)
+)
+
+# Shopping Cart Table - Purpose: Manages shopping cart contents.
+CREATE TABLE IF NOT EXISTS public.shopping_cart
+(
+    cart_id integer NOT NULL DEFAULT nextval('shopping_cart_cart_id_seq'::regclass),
+    user_id integer NOT NULL,
+    product_id integer NOT NULL,
+    quantity integer NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT shopping_cart_pkey PRIMARY KEY (cart_id),
+    CONSTRAINT shopping_cart_product_id_fkey FOREIGN KEY (product_id)
+        REFERENCES public.products (product_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT shopping_cart_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES public.users (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+### Start up the project
+
+1. Open project file explorer
+2. Find .env file open it and find lane "PGPASSWORD=20345646" please change "20345646" to your password you cretaed when installed postgreSQL, if you have named your database other than Shop please change also "PGDATABASE=Shop" accordingly.
+2. Find server.js file in it and open it
+3. In navigation bar click Run and from dropdown list select Run Without Debugging
+4. Now your project is up and is available when you open broswer and use link - http://localhost:3000
 
 ### Code Documentation
 
@@ -87,7 +134,7 @@ Backend: Node.js with Express framework handling server-side logic
 ### Security
 
 Password Hashing is added to project to save hashed passwords in database.
-Access countrol is working meaning that only specific user can access /admin routes. This scenario this feature is provided for user with email : kristiansgo@inbox.lv password: admin123
+Access countrol is working meaning that only specific user can access /admin routes. This scenario this feature will be available for user that will be created with username = admin, all other users with any other username will not be able to access admin routes.
 
 ### Key Modules and Functions:
 
@@ -266,3 +313,5 @@ Proceed to Checkout: When you’re ready to purchase, click the 'Checkout' butto
 
 7. Dynamic Updates
 Real-Time Updates: The application provides real-time updates. When you add or remove products from the cart, the total balance and cart contents will refresh automatically without the need to reload the page.
+
+

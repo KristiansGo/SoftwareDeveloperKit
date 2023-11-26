@@ -197,10 +197,6 @@ async function loadShoppingCart() {
           </div>
         `;
 
-        //<div class="quantity-controls">
-        //<button class="btn-increase-quantity" data-product-id="${item.product_id}">+</button>
-        //<button class="btn-decrease-quantity" data-product-id="${item.product_id}">-</button>
-        //</div>
         cartListElement.innerHTML += itemHtml;
 
         // Add the product ID to the list
@@ -241,64 +237,13 @@ async function loadShoppingCart() {
       cartListElement.appendChild(checkoutButton);
       
     } catch (error) {
-      console.error('Error loading shopping cart:', error);
-      // Handle the error
+      
     }
   } else {
-    console.log('User is not logged in or username is unavailable.');
     // Handle the case where there is no username
   }
 }
 document.addEventListener('DOMContentLoaded', loadShoppingCart);
-
-document.addEventListener("DOMContentLoaded", function() {
-  const registrationForm = document.getElementById("registration-form");
-
-  if (registrationForm) {
-      registrationForm.addEventListener("submit", function(e) {
-          e.preventDefault();
-          const username = document.getElementById("inputUsername").value;
-          const email = document.getElementById("inputEmail").value;
-          const password = document.getElementById("inputPassword").value;
-
-          // Prepare the user data to be sent to the server
-          const userData = {
-              username: username,
-              email: email,
-              password: password
-          };
-
-          // Send the user data to your server for database insertion
-          fetch('/registration', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(userData)
-          })
-          .then(response => {
-              if (response.ok) {
-                  return response.text(); // or response.json() if your server sends a JSON response
-              } else {
-                  throw new Error('Registration failed');
-              }
-          })
-          .then(data => {
-              console.log(data);
-              clearInputFields();
-              // Redirect to a success page or perform any other desired actions
-              window.location.href = '/login';
-          })
-          .catch(error => {
-              console.error('Error:', error);
-              alert('Error during registration. Please try again.');
-              clearInputFields();
-          });
-      });
-  } else {
-      console.error("Registration form not found");
-  }
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   const loginForm = document.getElementById('login-form');

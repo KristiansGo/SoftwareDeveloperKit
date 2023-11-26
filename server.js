@@ -58,6 +58,12 @@ app.post('/registration', async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
+    // Check if the username or email already exists in the database
+    const existingUser = await pool.query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email]);
+    if (existingUser.rows.length > 0) {
+      return res.status(400).send('Username or email already exists.');
+    }
+
     // Hash the user's password
     const hashedPassword = await bcrypt.hash(password, 10); // 10 is the number of salt rounds
 
@@ -71,6 +77,7 @@ app.post('/registration', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
 
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;

@@ -28,7 +28,6 @@ function cancelEdit() {
 }
 
 function loadProducts() {
-    console.log('Loading products...'); // Add this line
 
     // Implement AJAX call to get products and populate the table
     fetch('/api/product_list') // Use the route you defined for products
@@ -67,10 +66,10 @@ function loadProducts() {
 
                 // Add more cells for other product attributes if needed
 
-                const editButton = createProductEditButton(product.product_id, product); // Pass the product data as an argument
+                //const editButton = createProductEditButton(product.product_id, product); // Pass the product data as an argument
                 const deleteButton = createProductDeleteButton(product.product_id);
 
-                actionsCell.appendChild(editButton);
+                //actionsCell.appendChild(editButton);
                 actionsCell.appendChild(deleteButton);
                 // Append cells to the row
                 row.appendChild(productIdCell);
@@ -93,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadUsers() {
-    console.log('Loading users...'); // Add this line
 
     // Implement AJAX call to get users and populate the table
     fetch('/api/users') // Use the route you defined in step 1
@@ -252,7 +250,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const productForm = document.getElementById('productForm');
 
     if (productForm) {
-        // Add the event listener only if the form is found
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -267,6 +264,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 if (addProductResponse.ok) {
                     console.log('Product added successfully.');
+                    alert('Product added successfully.'); // Display success alert
+                    productForm.reset(); // Reset the form to clear input fields
                     // Additional logic after successfully adding a product
                 } else {
                     console.error('Product add failed.');
@@ -286,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const result = await uploadResponse.json();
                     const imagePath = result.filePath;
                     console.log('Image uploaded successfully:', imagePath);
+                    productForm.reset();
                     // Additional logic after successfully uploading an image
                 } else {
                     console.error('Image upload failed.');
@@ -295,8 +295,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     } else {
+        // Logic if the form is not found
     }
 });
+
 
 
 function navigateToProdList() {
@@ -411,21 +413,21 @@ function deleteProduct(productId) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const addUserForm = document.getElementById("addUserForm");
-  
+
     if (addUserForm) {
         addUserForm.addEventListener("submit", function(e) {
             e.preventDefault();
             const username = document.getElementById("inputUsername").value;
             const email = document.getElementById("inputEmail").value;
             const password = document.getElementById("inputPassword").value;
-  
+
             // Prepare the user data to be sent to the server
             const userData = {
                 username: username,
                 email: email,
                 password: password
             };
-  
+
             // Send the user data to your server for database insertion
             fetch('/admin/adduser', {
                 method: 'POST',
@@ -444,8 +446,8 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 console.log(data);
                 clearInputFields();
-                // Redirect to a success page or perform any other desired actions
-                window.location.href = '/login';
+                // Reload the page to reflect new data
+                window.location.reload();
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -456,7 +458,13 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("Registration form not found");
     }
-  });
+});
+
+function clearInputFields() {
+    document.getElementById("inputUsername").value = '';
+    document.getElementById("inputEmail").value = '';
+    document.getElementById("inputPassword").value = '';
+}
 
 ///
 
@@ -467,7 +475,6 @@ document.addEventListener("DOMContentLoaded", function() {
     if (addUserForm) {
       addUserForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        console.log("Add User button pressed");
 
         const username = document.getElementById("addUsername").value;
         const email = document.getElementById("addEmail").value;
@@ -500,6 +507,7 @@ document.addEventListener("DOMContentLoaded", function() {
           console.log(data);
           clearInputFields(); // Ensure you have this function defined to clear the input fields
           alert('User successfully added');
+          window.location.reload();
           // Optionally, update the user list on the page without reloading
         })
         .catch(error => {
