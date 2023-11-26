@@ -18,7 +18,7 @@ HTML, CSS, and JavaScript: Used for creating the user interface and client-side 
 Node.js v21.2.0: A JavaScript runtime for building fast and scalable server-side applications.
 EJS: Used for server-side HTML templating.
 Express: A minimal Node.js web application framework, facilitating the creation of API endpoints.
-
+ 
 
 # Prerequisites:
 
