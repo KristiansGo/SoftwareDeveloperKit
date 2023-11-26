@@ -120,9 +120,9 @@ CREATE TABLE IF NOT EXISTS public.shopping_cart
 
 1. Open project file explorer
 2. Find .env file open it and find lane "PGPASSWORD=20345646" please change "20345646" to your password you cretaed when installed postgreSQL, if you have named your database other than Shop please change also "PGDATABASE=Shop" accordingly.
-2. Find server.js file in it and open it
-3. In navigation bar click Run and from dropdown list select Run Without Debugging
-4. Now your project is up and is available when you open broswer and use link - http://localhost:3000
+3. Find server.js file in it and open it
+4. In navigation bar click Run and from dropdown list select Run Without Debugging
+5. Now your project is up and is available when you open broswer and use link - http://localhost:3000
 
 ### Code Documentation
 
